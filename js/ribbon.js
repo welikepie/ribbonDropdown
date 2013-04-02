@@ -20,6 +20,7 @@
 		DRAG_THRESHOLD = 0.1;
 		VENDORS = [ 'Webkit', 'Moz', 'O', 'ms' ];
 		snapRight = 0;
+		ribbonDisabled = true;
 		
 	var dom = {
 			ribbon: null,
@@ -92,22 +93,23 @@
 						dom.ribbonString = dom.ribbon.querySelector( '.string' );
 			dom.ribbonTag = dom.ribbon.querySelector( '.tag' );
 			if(snapRight == 0){dom.ribbonTag.style.marginTop = "10px";}
-			dom.ribbonTagText = dom.ribbonTag.querySelector('.textBit');
-			// Bind events
-			dom.ribbon.addEventListener( 'click', onRibbonClick, false );
-			document.addEventListener( 'mousemove', onMouseMove, false );
-			document.addEventListener( 'mousedown', onMouseDown, false );
-			document.addEventListener( 'mouseup', onMouseUp, false );
-			document.addEventListener( 'touchstart', onTouchStart, false);
-			document.addEventListener( 'touchmove', onTouchMove, false);
-			document.addEventListener( 'touchend', onTouchEnd, false);
-			window.addEventListener( 'resize', layout, false );
-
-			if( dom.closeButton ) {
-				//console.log("closer Found");
-				dom.closeButton.addEventListener( 'click', onCloseClick, false );
+			if(ribbonDisabled == false){
+				dom.ribbonTagText = dom.ribbonTag.querySelector('.textBit');
+				// Bind events
+				dom.ribbon.addEventListener( 'click', onRibbonClick, false );
+				document.addEventListener( 'mousemove', onMouseMove, false );
+				document.addEventListener( 'mousedown', onMouseDown, false );
+				document.addEventListener( 'mouseup', onMouseUp, false );
+				document.addEventListener( 'touchstart', onTouchStart, false);
+				document.addEventListener( 'touchmove', onTouchMove, false);
+				document.addEventListener( 'touchend', onTouchEnd, false);
+				window.addEventListener( 'resize', layout, false );
+	
+				if( dom.closeButton ) {
+					//console.log("closer Found");
+					dom.closeButton.addEventListener( 'click', onCloseClick, false );
+				}
 			}
-
 			// Start the animation loop
 			animate();
 
